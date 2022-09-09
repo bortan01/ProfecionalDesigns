@@ -7,7 +7,7 @@ class CircularProgressPage extends StatefulWidget {
   const CircularProgressPage({Key? key}) : super(key: key);
 
   @override
-  _CircularProgressPageState createState() => _CircularProgressPageState();
+  State<CircularProgressPage> createState() => _CircularProgressPageState();
 }
 
 class _CircularProgressPageState extends State<CircularProgressPage> with SingleTickerProviderStateMixin {
@@ -80,7 +80,7 @@ class _CircularProgressPageState extends State<CircularProgressPage> with Single
 
 class _MiRadialProgress extends CustomPainter {
 
-  final porcentaje;
+  final double porcentaje;
 
   _MiRadialProgress( this.porcentaje );
 

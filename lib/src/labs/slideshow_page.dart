@@ -110,15 +110,13 @@ class __SlidesState extends State<_Slides> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        controller: pageViewController,
-        children: <Widget>[
-          _Slide( 'assets/svgs/slide-1.svg' ),
-          _Slide( 'assets/svgs/slide-2.svg' ),
-          _Slide( 'assets/svgs/slide-3.svg' ),
-        ],
-      ),
+    return PageView(
+      controller: pageViewController,
+      children: const <Widget>[
+        _Slide( 'assets/svgs/slide-1.svg' ),
+        _Slide( 'assets/svgs/slide-2.svg' ),
+        _Slide( 'assets/svgs/slide-3.svg' ),
+      ],
     );
   }
 }
@@ -127,7 +125,7 @@ class _Slide extends StatelessWidget {
   
   final String svg;
 
-  _Slide( this.svg );
+  const _Slide( this.svg );
 
   @override
   Widget build(BuildContext context) {

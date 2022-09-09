@@ -18,7 +18,7 @@ class CuadradoAnimado extends StatefulWidget {
   const CuadradoAnimado({Key? key}) : super(key: key);
 
   @override
-  _CuadradoAnimadoState createState() => _CuadradoAnimadoState();
+  State<CuadradoAnimado> createState() => _CuadradoAnimadoState();
 }
 
 class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProviderStateMixin {

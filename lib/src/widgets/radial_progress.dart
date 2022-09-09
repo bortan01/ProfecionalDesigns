@@ -5,35 +5,35 @@ import 'package:flutter/material.dart';
 
 class RadialProgress extends StatefulWidget {
   
-  final porcentaje;
+  final double porcentaje;
   final Color colorPrimario;
   final Color colorSecundario;
   final double grosorPrimario;
   final double grosorSecundario;
 
-  RadialProgress({ 
-    @required this.porcentaje, 
+  const RadialProgress({Key? key,  
+    required this.porcentaje, 
     this.colorPrimario    = Colors.blue,
     this.colorSecundario  = Colors.grey,
     this.grosorPrimario   = 10,
     this.grosorSecundario = 4 
-  });
+  }) : super(key: key);
 
 
   @override
-  _RadialProgressState createState() => _RadialProgressState();
+  State<RadialProgress> createState() => _RadialProgressState();
 }
 
 class _RadialProgressState extends State<RadialProgress> with SingleTickerProviderStateMixin {
 
-  AnimationController controller;
-  double porcentajeAnterior;
+  late AnimationController controller;
+  late double porcentajeAnterior;
 
   @override
   void initState() {
     
     porcentajeAnterior = widget.porcentaje;
-    controller = new AnimationController(vsync: this, duration: Duration( milliseconds: 200 ));
+    controller =  AnimationController(vsync: this, duration: const Duration( milliseconds: 200 ));
 
     super.initState();
   }
@@ -55,9 +55,9 @@ class _RadialProgressState extends State<RadialProgress> with SingleTickerProvid
 
     return AnimatedBuilder(
       animation: controller,
-      builder: (BuildContext context, Widget child) {
-         return Container(
-          padding: EdgeInsets.all(10),
+      builder: ( context, child) =>
+          Container(
+          padding: const EdgeInsets.all(10),
           width: double.infinity,
           height: double.infinity,
           child: CustomPaint(
@@ -69,8 +69,8 @@ class _RadialProgressState extends State<RadialProgress> with SingleTickerProvid
               widget.grosorSecundario
             ),
           ),
-        );
-      },
+        )
+      ,
     );
    
   }
@@ -79,7 +79,7 @@ class _RadialProgressState extends State<RadialProgress> with SingleTickerProvid
 
 class _MiRadialProgress extends CustomPainter {
 
-  final porcentaje;
+  final double porcentaje;
   final Color colorPrimario;
   final Color colorSecundario;
   final double grosorPrimario;
@@ -100,18 +100,18 @@ class _MiRadialProgress extends CustomPainter {
     
 
     // Circulo completado    
-    final paint = new Paint()
+    final paint =  Paint()
       ..strokeWidth = grosorSecundario
       ..color       = colorSecundario
       ..style       = PaintingStyle.stroke;
 
-    final center = new Offset( size.width * 0.5 , size.height / 2 );
+    final center =  Offset( size.width * 0.5 , size.height / 2 );
     final radio  = min( size.width * 0.5, size.height * 0.5 );
 
     canvas.drawCircle(center, radio, paint);
 
     // Arco
-    final paintArco = new Paint()
+    final paintArco =  Paint()
       ..strokeWidth = grosorPrimario
       ..color       = colorPrimario
       ..strokeCap   = StrokeCap.round
