@@ -1,20 +1,27 @@
+import 'package:dis/src/themes/theme_changer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'src/pages/luncher_page.dart';
 
+void main() => runApp(
+      ChangeNotifierProvider(
+        create: (context) => ThemeChanger(3),
+        child: const MyApp(),
+      ),
+    );
 
-
-void main() => runApp(const MyApp());
- 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    final appTheme = Provider.of<ThemeChanger>(context);
+    return MaterialApp(
+      theme: appTheme.currentTheme,
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: LuncherPage()
+      home: const LuncherPage(),
     );
   }
 }
