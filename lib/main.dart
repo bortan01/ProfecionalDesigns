@@ -6,7 +6,7 @@ import 'src/pages/luncher_page.dart';
 
 void main() => runApp(
       ChangeNotifierProvider(
-        create: (context) => ThemeChanger(2),
+        create: (context) => ThemeChanger(3),
         child: const MyApp(),
       ),
     );
