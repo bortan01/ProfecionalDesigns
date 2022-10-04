@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../themes/theme_changer.dart';
+import '../providers/theme_changer.dart';
 import '../widgets/slideshow.dart';
 
 class SlideshowPage extends StatelessWidget {
@@ -11,12 +11,21 @@ class SlideshowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLarge = false;
+
+    if (MediaQuery.of(context).size.height > 500) {
+      isLarge = true;
+    }
+
+    final children = [
+      const Expanded(child: MiSlideshow()),
+      const Expanded(child: MiSlideshow()),
+    ];
     return Scaffold(
-        // backgroundColor: Colors.purple,
-        // body: MiSlideshow(),
-        body: Column(
-      children: const <Widget>[Expanded(child: MiSlideshow()), Expanded(child: MiSlideshow())],
-    ));
+      // backgroundColor: Colors.purple,
+      // body: MiSlideshow(),
+      body: isLarge ? Column(children: children) : Row(children: children),
+    );
   }
 }
 

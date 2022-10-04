@@ -1,12 +1,17 @@
-import 'package:dis/src/themes/theme_changer.dart';
+import 'package:dis/src/pages/luncher_tablet_page.dart';
+import 'package:dis/src/providers/layout_provider.dart';
+import 'package:dis/src/providers/theme_changer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'src/pages/luncher_page.dart';
 
 void main() => runApp(
-      ChangeNotifierProvider(
-        create: (context) => ThemeChanger(3),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ThemeChanger(3)),
+          ChangeNotifierProvider(create: (_) => LayoutProvider()),
+        ],
         child: const MyApp(),
       ),
     );
@@ -23,7 +28,17 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      home: const LuncherPage(),
+      home: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+          final screenSize = MediaQuery.of(context).size;
+          // tamano tableta
+          if (screenSize.width > 500) {
+            return const LuncherTabletPage();
+          }
+
+          return const LuncherPage();
+        },
+      ),
     );
   }
 }

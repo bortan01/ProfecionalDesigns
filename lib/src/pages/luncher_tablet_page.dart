@@ -1,3 +1,4 @@
+import 'package:dis/src/providers/layout_provider.dart';
 import 'package:dis/src/providers/theme_changer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,16 +6,36 @@ import 'package:provider/provider.dart';
 
 import '../routes/route.dart';
 
-class LuncherPage extends StatelessWidget {
-  const LuncherPage({Key? key}) : super(key: key);
+class LuncherTabletPage extends StatelessWidget {
+  const LuncherTabletPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+    final layoutProvider = Provider.of<LayoutProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diseños Flutter - Telefono'),
+        title: const Text('Diseños Flutter - Tablet'),
       ),
-      body: const _ListaOpciones(),
+      body: Row(
+        children: [
+          const SizedBox(
+            width: 300,
+            height: double.infinity,
+            // color: Colors.red,
+            child: _ListaOpciones(),
+          ),
+          Container(
+            width: 1,
+            height: double.infinity,
+            color: appTheme.darkTheme ? Colors.grey : appTheme.currentTheme.backgroundColor,
+          ),
+          Expanded(child: layoutProvider.currentPage)
+        ],
+      ),
+
+      // const _ListaOpciones(),
       drawer: const _MenuPrincipal(),
     );
   }
@@ -26,6 +47,7 @@ class _ListaOpciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    final layoutProvider = Provider.of<LayoutProvider>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.all(0),
@@ -47,12 +69,7 @@ class _ListaOpciones extends StatelessWidget {
             color: appTheme.colorScheme.secondary,
           ),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => pageRoutes[index].page,
-              ),
-            );
+            layoutProvider.currentPage = pageRoutes[index].page;
           },
         ),
       ),

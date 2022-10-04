@@ -1,4 +1,4 @@
-import 'package:dis/src/themes/theme_changer.dart';
+import 'package:dis/src/providers/theme_changer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
