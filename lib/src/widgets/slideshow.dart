@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import '../providers/theme_changer.dart';
+
 class Slideshow extends StatelessWidget {
   final List<Widget> slides;
   final bool puntosArriba;
@@ -65,7 +67,7 @@ class _CrearEstructuraSlideshow extends StatelessWidget {
 class _Dots extends StatelessWidget {
   final int totalSlides;
 
-  const _Dots({ required this.totalSlides});
+  const _Dots({required this.totalSlides});
 
   @override
   Widget build(BuildContext context) {
@@ -88,12 +90,13 @@ class _Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ssModel = Provider.of<_SlideshowModel>(context);
+    final themeApp = Provider.of<ThemeChanger>(context);
     double tamano;
     Color color;
 
     if (ssModel.currentPage >= index - 0.5 && ssModel.currentPage < index + 0.5) {
       tamano = ssModel.bulletPrimario;
-      color = ssModel.colorPrimario;
+      color = themeApp.currentTheme.colorScheme.secondary;
     } else {
       tamano = ssModel.bulletSecundario;
       color = ssModel.colorSecundario;
@@ -112,7 +115,7 @@ class _Dot extends StatelessWidget {
 class _Slides extends StatefulWidget {
   final List<Widget> slides;
 
-  const _Slides( this.slides);
+  const _Slides(this.slides);
 
   @override
   __SlidesState createState() => __SlidesState();

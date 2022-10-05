@@ -9,7 +9,7 @@ import 'src/pages/luncher_page.dart';
 void main() => runApp(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => ThemeChanger(3)),
+          ChangeNotifierProvider(create: (_) => ThemeChanger(1)),
           ChangeNotifierProvider(create: (_) => LayoutProvider()),
         ],
         child: const MyApp(),

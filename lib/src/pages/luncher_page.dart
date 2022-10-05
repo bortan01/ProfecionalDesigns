@@ -74,12 +74,13 @@ class _MenuPrincipal extends StatelessWidget {
             decoration: BoxDecoration(
               color: appTheme.currentTheme.colorScheme.secondary,
             ),
-            child: const SizedBox(
+            child: SizedBox(
               width: double.infinity,
               child: CircleAvatar(
+                backgroundColor: appTheme.currentTheme.colorScheme.outline.withOpacity(0.3),
                 child: Text(
                   "BM",
-                  style: TextStyle(fontSize: 50),
+                  style: TextStyle(fontSize: 50, color: appTheme.currentTheme.colorScheme.outline),
                 ),
               ),
             ),

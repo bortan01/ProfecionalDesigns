@@ -11,26 +11,44 @@ class ThemeChanger with ChangeNotifier {
         _darkTheme = false;
         _customTheme = false;
         _currentTheme = ThemeData.light().copyWith(
-          backgroundColor: Colors.pink 
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.deepPurple),
+          backgroundColor: Colors.orange,
+          colorScheme: ThemeData().colorScheme.copyWith(
+                secondary: Colors.deepPurple,
+                background: Colors.orange,
+                error: Colors.orange,
+                errorContainer: Colors.orange,
+                outline: Colors.white,
+              ),
         );
         break;
       case 2: //dark
         _darkTheme = true;
         _customTheme = false;
-        _currentTheme = ThemeData.dark();
+        _currentTheme = ThemeData.dark().copyWith(
+          backgroundColor: Colors.amber,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
+          colorScheme: ThemeData().colorScheme.copyWith(
+                secondary: Colors.green,
+                background: Colors.amber,
+                error: Colors.amber,
+                errorContainer: Colors.amber,
+                outline: Colors.white,
+              ),
+        );
         break;
-      case 3: //dark
+      case 3: //custom
         _darkTheme = false;
         _customTheme = true;
         _currentTheme = ThemeData.dark().copyWith(
-          // primaryColorLight: Colors.white,
-          // scaffoldBackgroundColor: const Color(0XFF16202B),
-          // textTheme: const TextTheme(bodyText1: TextStyle(color: Colors.white)),
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.pink),
+          backgroundColor: Colors.indigo,
           colorScheme: ThemeData().colorScheme.copyWith(
-                secondary: const Color(0xff48A0EB),
-                background: Colors.red,
-                error: Colors.red,
-                errorContainer: Colors.red
+                secondary: Colors.pink,
+                background: Colors.indigo,
+                error: Colors.indigo,
+                errorContainer: Colors.indigo,
+                outline: Colors.white,
               ),
         );
         break;
@@ -42,15 +60,34 @@ class ThemeChanger with ChangeNotifier {
   }
 
   ThemeData get currentTheme => _currentTheme;
-
   bool get darkTheme => _darkTheme;
   set darkTheme(bool value) {
     _customTheme = false;
     _darkTheme = value;
     if (value) {
-      _currentTheme = ThemeData.dark();
+      _currentTheme =ThemeData.dark().copyWith(
+          backgroundColor: Colors.amber,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
+          colorScheme: ThemeData().colorScheme.copyWith(
+                secondary: Colors.green,
+                background: Colors.amber,
+                error: Colors.amber,
+                errorContainer: Colors.amber,
+                outline: Colors.white,
+              ),
+        );
     } else {
-      _currentTheme = ThemeData.light();
+      _currentTheme =ThemeData.light().copyWith(
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.deepPurple),
+          backgroundColor: Colors.orange,
+          colorScheme: ThemeData().colorScheme.copyWith(
+                secondary: Colors.deepPurple,
+                background: Colors.orange,
+                error: Colors.orange,
+                errorContainer: Colors.orange,
+                outline: Colors.white,
+              ),
+        );
     }
 
     notifyListeners();
@@ -62,15 +99,29 @@ class ThemeChanger with ChangeNotifier {
     _customTheme = value;
 
     if (value) {
-      _currentTheme = ThemeData.dark().copyWith(
-        colorScheme: ThemeData().colorScheme.copyWith(
-              secondary: const Color(0xff48A0EB),
-            ),
-      );
+      _currentTheme =ThemeData.dark().copyWith(
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.pink),
+          backgroundColor: Colors.indigo,
+          colorScheme: ThemeData().colorScheme.copyWith(
+                secondary: Colors.pink,
+                background: Colors.indigo,
+                error: Colors.indigo,
+                errorContainer: Colors.indigo,
+                outline: Colors.white,
+              ),
+        );
     } else {
       _currentTheme = ThemeData.light().copyWith(
-          backgroundColor: Colors.pink 
-        );;
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.deepPurple),
+        backgroundColor: Colors.orange,
+        colorScheme: ThemeData().colorScheme.copyWith(
+              secondary: Colors.deepPurple,
+              background: Colors.orange,
+              error: Colors.orange,
+              errorContainer: Colors.orange,
+              outline: Colors.white,
+            ),
+      );
     }
 
     notifyListeners();

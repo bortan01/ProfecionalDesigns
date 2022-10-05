@@ -56,9 +56,7 @@ class EmergencyPage extends StatelessWidget {
                 texto: item.texto,
                 color1: item.color1,
                 color2: item.color2,
-                onPress: () {
-                  print('hola');
-                },
+                onPress: () {},
               ),
             ))
         .toList();
@@ -126,9 +124,7 @@ class BotonGordoTemp extends StatelessWidget {
       texto: 'Motor Accident',
       color1: const Color(0xff6989F5),
       color2: const Color(0xff906EF5),
-      onPress: () {
-        print('Click!');
-      },
+      onPress: () {},
     );
   }
 }

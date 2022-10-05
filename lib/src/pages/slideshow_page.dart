@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -22,8 +23,11 @@ class SlideshowPage extends StatelessWidget {
       const Expanded(child: MiSlideshow()),
     ];
     return Scaffold(
-      // backgroundColor: Colors.purple,
-      // body: MiSlideshow(),
+      appBar: isLarge
+          ? AppBar(
+              title: const Text('Slide Show'),
+            )
+          : null,
       body: isLarge ? Column(children: children) : Row(children: children),
     );
   }
