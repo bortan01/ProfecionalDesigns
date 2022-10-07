@@ -13,17 +13,17 @@ class SlideshowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLarge = false;
+    bool isWide = false;
 
-    if (MediaQuery.of(context).size.height > 500) {
-      isLarge = true;
-    }
+    isLarge = (MediaQuery.of(context).size.height > 500);
+    isWide = (MediaQuery.of(context).size.width > 500);
 
     final children = [
       const Expanded(child: MiSlideshow()),
       const Expanded(child: MiSlideshow()),
     ];
     return Scaffold(
-      appBar: isLarge
+      appBar: !isWide
           ? AppBar(
               title: const Text('Slide Show'),
             )

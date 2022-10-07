@@ -16,20 +16,29 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLarge = false;
+
+    isLarge = (MediaQuery.of(context).size.width > 500);
+
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.refresh),
-            onPressed: () {
-              setState(() {
-                porcentaje += 10;
-                if (porcentaje > 100) {
-                  porcentaje = 0;
-                }
-              });
-            }),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      appBar: !isLarge
+          ? AppBar(
+              title: const Text('Barras de progreso'),
+            )
+          : null,
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.refresh),
+          onPressed: () {
+            setState(() {
+              porcentaje += 10;
+              if (porcentaje > 100) {
+                porcentaje = 0;
+              }
+            });
+          }),
+      body: SafeArea(
+        child: ListView(
+          children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -45,7 +54,9 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
               ],
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 

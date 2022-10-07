@@ -10,11 +10,14 @@ class PinterestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLarge = false;
+
+    isLarge = (MediaQuery.of(context).size.width > 500);
+
     return ChangeNotifierProvider(
       create: (_) => _MenuModel(),
       child: Scaffold(
-        // body: PinterestMenu(),
-        // body: PinterestGrid(),
+        appBar: !isLarge ? AppBar(title: const Text("List")) : null,
         body: Stack(
           children: <Widget>[
             const PinterestGrid(),
@@ -51,22 +54,10 @@ class _PinterestMenuLocation extends StatelessWidget {
                 activeColor: appTheme.colorScheme.secondary,
                 // inactiveColor: Colors.blue,
                 items: [
-                  PinterestButton(
-                      icon: Icons.pie_chart,
-                      onPressed: () {
-                      }),
-                  PinterestButton(
-                      icon: Icons.search,
-                      onPressed: () {
-                      }),
-                  PinterestButton(
-                      icon: Icons.notifications,
-                      onPressed: () {
-                      }),
-                  PinterestButton(
-                      icon: Icons.supervised_user_circle,
-                      onPressed: () {
-                      }),
+                  PinterestButton(icon: Icons.pie_chart, onPressed: () {}),
+                  PinterestButton(icon: Icons.search, onPressed: () {}),
+                  PinterestButton(icon: Icons.notifications, onPressed: () {}),
+                  PinterestButton(icon: Icons.supervised_user_circle, onPressed: () {}),
                 ],
               ),
             ],
@@ -126,11 +117,13 @@ class _PinterestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeChanger>(context);
     return Container(
         height: 200,
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-        decoration:
-            const BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.all(Radius.circular(30))),
+        decoration: BoxDecoration(
+            color: theme.currentTheme.colorScheme.secondary,
+            borderRadius: const BorderRadius.all(Radius.circular(30))),
         child: Center(
           child: CircleAvatar(
             backgroundColor: Colors.white,

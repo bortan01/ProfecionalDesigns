@@ -3,27 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HeaderCuadrado extends StatelessWidget {
-  const HeaderCuadrado({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderCuadrado({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      color: const Color(0xff615AAB),
+      color: color,
     );
   }
 }
 
 class HeaderBordesRedondeados extends StatelessWidget {
-  const HeaderBordesRedondeados({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderBordesRedondeados({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      decoration: const BoxDecoration(
-          color: Color(0xff615AAB),
-          borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(70),
             bottomRight: Radius.circular(70),
           )),
@@ -32,7 +34,8 @@ class HeaderBordesRedondeados extends StatelessWidget {
 }
 
 class HeaderDiagonal extends StatelessWidget {
-  const HeaderDiagonal({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderDiagonal({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +43,23 @@ class HeaderDiagonal extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderDiagonalPainter(),
+        painter: _HeaderDiagonalPainter(color: color),
       ),
     );
   }
 }
 
 class _HeaderDiagonalPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderDiagonalPainter({required this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = const Color(0xff615AAB);
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
@@ -74,7 +81,8 @@ class _HeaderDiagonalPainter extends CustomPainter {
 }
 
 class HeaderTriangular extends StatelessWidget {
-  const HeaderTriangular({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderTriangular({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,19 +90,23 @@ class HeaderTriangular extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderTriangularPainter(),
+        painter: _HeaderTriangularPainter(color: color),
       ),
     );
   }
 }
 
 class _HeaderTriangularPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderTriangularPainter({required this.color});
+
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = const Color(0xff615AAB);
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
@@ -114,7 +126,8 @@ class _HeaderTriangularPainter extends CustomPainter {
 }
 
 class HeaderPico extends StatelessWidget {
-  const HeaderPico({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderPico({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,19 +135,22 @@ class HeaderPico extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderPicoPainter(),
+        painter: _HeaderPicoPainter(color: color),
       ),
     );
   }
 }
 
 class _HeaderPicoPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderPicoPainter({required this.color});
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = const Color(0xff615AAB);
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
@@ -156,7 +172,8 @@ class _HeaderPicoPainter extends CustomPainter {
 }
 
 class HeaderCurvo extends StatelessWidget {
-  const HeaderCurvo({Key? key}) : super(key: key);
+  final Color color;
+  const HeaderCurvo({Key? key, required this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,19 +181,22 @@ class HeaderCurvo extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomPaint(
-        painter: _HeaderCurvoPainter(),
+        painter: _HeaderCurvoPainter(color),
       ),
     );
   }
 }
 
 class _HeaderCurvoPainter extends CustomPainter {
+  final Color color;
+
+  _HeaderCurvoPainter(this.color);
   @override
   void paint(Canvas canvas, Size size) {
     final lapiz = Paint();
 
     // Propiedades
-    lapiz.color = const Color(0xff615AAB);
+    lapiz.color = color;
     lapiz.style = PaintingStyle.fill; // .fill .stroke
     lapiz.strokeWidth = 20;
 
@@ -295,9 +315,10 @@ class _IconHeaderBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeigh = MediaQuery.of(context).size.height;
     return Container(
       width: double.infinity,
-      height: 300,
+      height: screenHeigh * 0.32,
       decoration: BoxDecoration(
           // color: Colors.red,
           borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(80)),

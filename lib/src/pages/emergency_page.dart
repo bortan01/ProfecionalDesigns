@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:animate_do/animate_do.dart';
@@ -22,8 +24,9 @@ class EmergencyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLarge = false;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    if (MediaQuery.of(context).size.height > 300) {
+    if (screenWidth > 500) {
       isLarge = true;
     }
 
@@ -62,34 +65,35 @@ class EmergencyPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-        // backgroundColor: Colors.red,
-        body: Stack(
-      children: <Widget>[
-        SafeArea(
-          child: Container(
-            margin: EdgeInsets.only(top: isLarge ? 220 : 10),
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: <Widget>[
-                Visibility(
-                  visible: isLarge,
-                  child: const SizedBox(height: 80),
-                ),
-                ...itemMap
-              ],
+      // backgroundColor: Colors.red,
+
+      body: Stack(
+        children: <Widget>[
+          SafeArea(
+            child: Container(
+              margin: EdgeInsets.only(top: isLarge ? 10 : 10),
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: <Widget>[
+                  Visibility(
+                    visible: !isLarge,
+                    child: const SizedBox(height: 220),
+                  ),
+                  ...itemMap,
+                ],
+              ),
             ),
           ),
-        ),
-        Visibility(
-          visible: isLarge,
-          child: _Encabezado(),
-        ),
-      ],
-    ));
+          Visibility(visible: !isLarge, child: const _Encabezado()),
+        ],
+      ),
+    );
   }
 }
 
 class _Encabezado extends StatelessWidget {
+  const _Encabezado();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -102,13 +106,30 @@ class _Encabezado extends StatelessWidget {
           color2: Color(0xff66A9F2),
         ),
         Positioned(
-            right: 0,
-            top: 45,
-            child: RawMaterialButton(
-                onPressed: () {},
-                shape: const CircleBorder(),
-                padding: const EdgeInsets.all(15.0),
-                child: const FaIcon(FontAwesomeIcons.ellipsisVertical, color: Colors.white)))
+          right: 0,
+          top: 45,
+          child: RawMaterialButton(
+            onPressed: () {},
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(15.0),
+            child: const FaIcon(
+              FontAwesomeIcons.ellipsisVertical,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 30,
+          top: 60,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(
+              Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
+              color: Colors.white,
+              size: 34,
+            ),
+          ),
+        ),
       ],
     );
   }

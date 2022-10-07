@@ -29,7 +29,7 @@ class LuncherTabletPage extends StatelessWidget {
           Container(
             width: 1,
             height: double.infinity,
-            color: appTheme.darkTheme ? Colors.grey : appTheme.currentTheme.backgroundColor,
+            color: appTheme.darkTheme ? Colors.grey : appTheme.currentTheme.colorScheme.secondary,
           ),
           Expanded(child: layoutProvider.currentPage)
         ],

@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/theme_changer.dart';
 
 class CuadradoAnimadoPage extends StatelessWidget {
   const CuadradoAnimadoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isWide = false;
+
+    isWide = (MediaQuery.of(context).size.width > 500);
+
     return Scaffold(
+      appBar: !isWide
+          ? AppBar(
+              title: const Text('Cuadro Animado'),
+            )
+          : null,
       body: Center(child: _CuadradoAnimado()),
     );
   }
@@ -73,10 +85,14 @@ class __CuadradoAnimadoState extends State<_CuadradoAnimado> with SingleTickerPr
 class _Rectangulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+
+    final color = appTheme.currentTheme.colorScheme.secondary;
+
     return Container(
       width: 70,
       height: 70,
-      decoration: const BoxDecoration(color: Colors.blue),
+      decoration: BoxDecoration(color: color),
     );
   }
 }

@@ -8,15 +8,17 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        _MainScroll(),
-        Positioned(
-          bottom: -10,
-          right: 0,
-          child: _BotonNewList(),
-        ),
-      ],
+        body: SafeArea(
+      child: Stack(
+        children: <Widget>[
+          _MainScroll(),
+          Positioned(
+            bottom: -10,
+            right: 0,
+            child: _BotonNewList(),
+          ),
+        ],
+      ),
     ));
   }
 }
@@ -81,15 +83,17 @@ class _MainScroll extends StatelessWidget {
     return CustomScrollView(
       slivers: <Widget>[
         SliverPersistentHeader(
-            floating: true,
-            delegate: _SliverCustomHeaderDelegate(
-                minheight: 170,
-                maxheight: 200,
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  color: appTheme.scaffoldBackgroundColor,
-                  child: _Titulo(),
-                ))),
+          floating: true,
+          delegate: _SliverCustomHeaderDelegate(
+            minheight: 170,
+            maxheight: 200,
+            child: Container(
+              alignment: Alignment.centerLeft,
+              color: appTheme.scaffoldBackgroundColor,
+              child: _Titulo(),
+            ),
+          ),
+        ),
         SliverList(delegate: SliverChildListDelegate([...items, const SizedBox(height: 100)]))
       ],
     );
@@ -126,42 +130,65 @@ class _Titulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appThemes = Provider.of<ThemeChanger>(context);
+    bool isLarge = false;
 
-    return Column(
-      children: <Widget>[
-        const SizedBox(height: 30),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Text(
-            'New',
-            style: TextStyle(
-              color: appThemes.darkTheme ? Colors.grey : const Color(0xff532128),
-              fontSize: 50,
+    isLarge = (MediaQuery.of(context).size.width > 500);
+
+    return Row(
+      children: [
+        Visibility(
+          visible: !isLarge,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: CircleAvatar(
+                backgroundColor: const Color(0xffF08F66),
+                radius: 30,
+                child: Icon(
+                  Icons.adaptive.arrow_back,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
         ),
-        Stack(
+        Column(
           children: <Widget>[
-            const SizedBox(width: 100),
-            Positioned(
-              bottom: 8,
-              child: Container(
-                width: 150,
-                height: 8,
-                color: appThemes.darkTheme ? Colors.grey : const Color(0xffF7CDD5),
+            const SizedBox(height: 30),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Text(
+                'New',
+                style: TextStyle(
+                  color: appThemes.darkTheme ? Colors.grey : const Color(0xff532128),
+                  fontSize: 50,
+                ),
               ),
             ),
-            const Text(
-              'List',
-              style: TextStyle(color: Color(0xffD93A30), fontSize: 50, fontWeight: FontWeight.bold),
-            ),
+            Stack(
+              children: <Widget>[
+                const SizedBox(width: 100),
+                Positioned(
+                  bottom: 8,
+                  child: Container(
+                    width: 150,
+                    height: 8,
+                    color: appThemes.darkTheme ? Colors.grey : const Color(0xffF7CDD5),
+                  ),
+                ),
+                const Text(
+                  'List',
+                  style: TextStyle(color: Color(0xffD93A30), fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+              ],
+            )
           ],
-        )
+        ),
       ],
     );
   }
 }
-
 
 class _ListItem extends StatelessWidget {
   final String titulo;
