@@ -1,4 +1,4 @@
-package com.example.dis
+package com.martineztraveltours.dis
 
 import io.flutter.embedding.android.FlutterActivity
 

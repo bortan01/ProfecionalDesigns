@@ -23,6 +23,7 @@ class _GraficasCircularesPageState extends State<GraficasCircularesPage> {
     return Scaffold(
       appBar: !isLarge
           ? AppBar(
+              centerTitle: true,
               title: const Text('Barras de progreso'),
             )
           : null,

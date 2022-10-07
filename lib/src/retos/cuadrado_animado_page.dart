@@ -16,6 +16,7 @@ class CuadradoAnimadoPage extends StatelessWidget {
       appBar: !isWide
           ? AppBar(
               title: const Text('Cuadro Animado'),
+              centerTitle: true,
             )
           : null,
       body: Center(child: _CuadradoAnimado()),

@@ -17,7 +17,7 @@ class PinterestPage extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => _MenuModel(),
       child: Scaffold(
-        appBar: !isLarge ? AppBar(title: const Text("List")) : null,
+        appBar: !isLarge ? AppBar(centerTitle: true, title: const Text("List Elements")) : null,
         body: Stack(
           children: <Widget>[
             const PinterestGrid(),

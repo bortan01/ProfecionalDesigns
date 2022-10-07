@@ -291,7 +291,7 @@ class IconHeader extends StatelessWidget {
         Positioned(top: -50, left: -70, child: FaIcon(icon, size: 250, color: Colors.white.withOpacity(0.2))),
         Column(
           children: <Widget>[
-            const SizedBox(height: 80, width: double.infinity),
+            const SizedBox(height: 30, width: double.infinity),
             Text(subtitulo, style: TextStyle(fontSize: 20, color: colorBlanco)),
             const SizedBox(height: 20),
             Text(titulo, style: TextStyle(fontSize: 25, color: colorBlanco, fontWeight: FontWeight.bold)),

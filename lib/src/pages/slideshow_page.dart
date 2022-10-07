@@ -26,6 +26,7 @@ class SlideshowPage extends StatelessWidget {
       appBar: !isWide
           ? AppBar(
               title: const Text('Slide Show'),
+              centerTitle: true,
             )
           : null,
       body: isLarge ? Column(children: children) : Row(children: children),

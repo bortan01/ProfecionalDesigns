@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dis">
+    package="com.martineztraveltours.dis">
    <application
-        android:label="dis"
+        android:label="Diseños Profesionales"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
